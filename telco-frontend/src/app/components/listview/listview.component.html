@@ -1,8 +1,28 @@
+<ul>
+  <li *ngFor="let item of service">{{ item.name}}</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!--directive *ngFor="let item of categories(dolasilacak dizi adi)"-->
 <!--*ngIf="categories.length > 3"-->
 <!-- Bir elementte ikiden fazla directive kullanamayiz-->
 <!--Bir element icin birden fazla directive kullanmak istersek ng-template, ng-container kullanabiliriz.-->
-<ng-container *ngIf="language == 'tr'; else enMessage">
+<!-- <ng-container *ngIf="language == 'tr'; else enMessage">
   <div>Merhaba</div>
 </ng-container>
 <ng-template #enMessage>
@@ -15,8 +35,8 @@
   </ng-template>
 </ul>
 
-<!-- Reactive Form -->
-<h1>Form - Add</h1>
+Reactive Form -->
+<!-- <h1>Form - Add</h1>
 <form [formGroup]="categoryAddForm" (submit)="add()">
   <p>{{ error }}</p>
   <input formControlName="name" type="text" placeholder="name" />
@@ -24,10 +44,10 @@
   <button type="submit">Add</button>
 </form>
 
-<!-- ngModel Form -->
-<h1>Form - Delete</h1>
+ ngModel Form -->
+<!-- <h1>Form - Delete</h1>
 Silinecek olan id: {{ categoryIdToDelete }}
 <div>
   <input type="text" placeholder="id" [(ngModel)]="categoryIdToDelete" />
   <button class="btn" (click)="delete()">Sil</button>
-</div>
+</div> -->

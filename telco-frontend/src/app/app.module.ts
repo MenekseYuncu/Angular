@@ -13,6 +13,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './pages/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
 import { CostumerListComponent } from './pages/costumer-list/costumer-list.component';
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { JwtModule } from '@auth0/angular-jwt';
+import { Token } from '@angular/compiler';
+import { NavbarComponent } from './pages/navbar/navbar.component';
 
 //declarations ---> Module ait componentleri cagirir.
 //imports  ---> Modulun kullandigi modulleri tutar.
@@ -30,6 +35,7 @@ import { CostumerListComponent } from './pages/costumer-list/costumer-list.compo
     SplitPipe,
     LoginComponent,
     CostumerListComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,13 +43,20 @@ import { CostumerListComponent } from './pages/costumer-list/costumer-list.compo
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
     ToastrModule.forRoot(
       {positionClass: 'toast-bottom-center'},
     ),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+          return localStorage.getItem('token');
+        }}
+    })
   ],
   exports: [],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })

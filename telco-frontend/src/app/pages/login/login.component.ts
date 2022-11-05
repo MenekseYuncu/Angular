@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/authService.service';
 import { LocalstorageService } from 'src/app/services/localstorageService.service';
-//import { ToastrService } from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private localstorageService: LocalstorageService,
     private router: Router,
-    //private toastrService:ToastrService
+    private toastr:ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -33,21 +33,24 @@ export class LoginComponent implements OnInit {
   }
   login() {
     console.log('test')
+   
     this.authService.login(this.loginForm.value).subscribe({
       next: (response) => {
         this.localstorageService.setItem('token', response['access_token']);
+        this.router.navigateByUrl('customerList');
         this.loginForm.reset();
-        //this.toastrService.info(response.message)
-        window.alert('işlem başarılı')
+        this.toastr.success("Deneme login","deneme");
+    
         console.log('tost message')
       },
-      error: (err)=>{
-
+      error: (errorResponse)=>{
+        this.toastr.error(errorResponse.error.message)
+        
         console.log('tost message')
         //this.toastrService.error(err)}
       }
   });
-    this.router.navigateByUrl('customerList');
+   
   }
 
   
