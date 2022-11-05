@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Services } from '../models/service';
+import { Service } from '../models/service';
 
 //Bu etiket sayesinde angular once bu classi olusturur ve IoC container'ina ekler. Ardindan da istedigimiz componentte direkt const'lar icinde cagirabilmemizi saglar.
 @Injectable({
@@ -14,13 +14,13 @@ export class ServicesService {
   constructor(private httpClient: HttpClient) {
 
   }
-  getServices(): Observable<Services[]> {
+  getServices(): Observable<Service[]> {
 
-    return this.httpClient.get<Services[]>(this.controllerUrl); //Observable geri doner.
+    return this.httpClient.get<Service[]>(this.controllerUrl); //Observable geri doner.
   }
 
-  add(service: Services): Observable<Services> {
-    return this.httpClient.post<Services>(this.controllerUrl, service);
+  add(service: Service): Observable<Service> {
+    return this.httpClient.post<Service>(this.controllerUrl, service);
   }
 
   // update(service: Services): Observable<Services> {

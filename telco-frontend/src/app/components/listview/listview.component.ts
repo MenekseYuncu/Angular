@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 // import { Category } from 'src/app/models/category';
 // import { CategoriesService } from 'src/app/services/categories.service';
-import { Services } from 'src/app/models/service';
+import { Service } from 'src/app/models/service';
 import { ServicesService } from 'src/app/services/services.service';
 
 @Component({
@@ -21,7 +21,7 @@ export class ListviewComponent implements OnInit {
   //categories!: Category[]; // property henuz tanimlanmasa da kullanim oncesi atama yapilacaktir anlamina geliyor.
   language: string = 'tr';
   error: string = '';
-  service!:Services[];
+  service!:Service[];
   serviceAddForm!: FormGroup;
 
 
@@ -33,16 +33,16 @@ export class ListviewComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.serviceService.getServices();
+    this.getServices();
     
     
   }
 
-  createServiceAddForm(){
-    this.serviceAddForm = this.formBuilder.group({
-      name: ['', Validators.required]
-    })
-  }
+  // createServiceAddForm(){
+  //   this.serviceAddForm = this.formBuilder.group({
+  //     name: ['', Validators.required]
+  //   })
+  // }
 
   getServices(): void {
     this.serviceService.getServices().subscribe((response) => {
