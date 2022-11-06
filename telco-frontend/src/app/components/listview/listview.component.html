@@ -1,12 +1,29 @@
-<ul>
-  <li *ngFor="let item of service">{{ item.name}}</li>
-</ul>
+<input [(ngModel)]="searchText" (keydown)="onSearchTextChanged()" type="text" />
+<!-- <ul>
+  <li *ngFor="let item of individualCustomers | filterService: searchText">{{ item.firstName}} {{ item.lastName}} </li>
+ 
+</ul> -->
 
-
-
-
-
-
+<table class="table table-borderless btn-table">
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody >
+    <tr *ngFor="let item of individualCustomers | filterService: searchText" >
+     
+      <td>{{ item.firstName}}</td>
+      <td> {{ item.lastName}}</td>
+      <td>
+        <button type="button" class="btn btn-primary" [routerLink]="['/customerDetails',item.customerId]">Detail</button>
+      </td>
+    </tr>
+  </tbody>
+  
+  </table>
 
 
 

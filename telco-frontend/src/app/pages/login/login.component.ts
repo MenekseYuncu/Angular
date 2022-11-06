@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
       password: ['', [Validators.required]],
     });
   }
+  
   login() {
     console.log('test')
    
@@ -47,7 +48,6 @@ export class LoginComponent implements OnInit {
         this.toastr.error(errorResponse.error.message)
         
         console.log('tost message')
-        //this.toastrService.error(err)}
       }
   });
    
