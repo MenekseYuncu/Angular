@@ -37,13 +37,6 @@ export class ListviewComponent implements OnInit {
     
     
   }
-
-  // createServiceAddForm(){
-  //   this.serviceAddForm = this.formBuilder.group({
-  //     name: ['', Validators.required]
-  //   })
-  // }
-
   getIndividualCustomers(): void {
     this.serviceService.getServices().subscribe((response) => {
       this.individualCustomers = response;
