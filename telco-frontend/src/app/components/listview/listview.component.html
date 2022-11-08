@@ -1,70 +1,101 @@
-<input [(ngModel)]="searchText" (keydown)="onSearchTextChanged()" type="text" />
-<!-- <ul>
-  <li *ngFor="let item of individualCustomers | filterService: searchText">{{ item.firstName}} {{ item.lastName}} </li>
- 
-</ul> -->
 
-<table class="table table-borderless btn-table">
+<div style="display: flex;">
+<div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+  <div  class="btn-group mr-2" role="group" aria-label="First group">
+    <button type="button" class="btn btn-secondary" [ngClass]="{ active: selectedCustomer }" (click)="getIndividualCustomers()">Individual Customers</button>
+    <button type="button" class="btn btn-secondary" [ngClass]="{ active: !selectedCustomer }" (click)="getCorporateCustomers()">Corporate Customers</button>
+  </div>
+  <!-- <div class="input-group">
+    <input [(ngModel)]="searchText" (keydown)="onSearchTextChanged()" type="text" class="form-control" placeholder="Input group example" aria-label="Input group example" aria-describedby="btnGroupAddon" />
+  </div> -->
+</div>
+
+</div>
+
+<table class="table table-borderless btn-table" *ngIf="selectedCustomer">
+  
   <thead>
+    <div class="m-4">
+      <div class="row">
+          <div class="col-4">
+              <div class="input-group">
+                  
+                  <input [(ngModel)]="searchText" (keydown)="onSearchTextChanged()" type="text" class="form-control" placeholder="First Name">
+              </div>
+          </div>
+          <!-- <div class="col-4">
+              <div class="input-group">
+                  
+                  <input type="text" class="form-control" placeholder="Last Name">
+              </div>
+          </div> -->
+      </div>
+    </div>
     <tr>
       <th>First Name</th>
       <th>Last Name</th>
+      <th>National Identity</th>
+      <th>Birthday</th>
       <th>Details</th>
     </tr>
   </thead>
+  
   <tbody >
     <tr *ngFor="let item of individualCustomers | filterService: searchText" >
      
       <td>{{ item.firstName}}</td>
       <td> {{ item.lastName}}</td>
+      <td> {{ item.nationalIdentity}}</td>
+      <td> {{ item.dateOfBirth }}</td>
       <td>
         <button type="button" class="btn btn-primary" [routerLink]="['/customerDetails',item.customerId]">Detail</button>
       </td>
     </tr>
   </tbody>
-  
+  <button type="button" class="btn btn-primary btn-lg btn-block" [routerLink]="['/createCustomer']">Create New Customer</button>
   </table>
 
+  <!-- ----------------------------------- -->
+  <table class="table table-borderless btn-table" *ngIf="!selectedCustomer">
+    <thead>
+      <div class="m-4">
+        <div class="row">
+            <div class="col-4">
+                <div class="input-group">
+                    
+                    <input type="text" [(ngModel)]="searchCorporate" (keydown)=" onSearchTextCorporate()" class="form-control" placeholder="Company Name">
+                </div>
+            </div>
+            <!-- <div class="col-4">
+                <div class="input-group">
+                    
+                    <input type="text" class="form-control" placeholder="Tax Number">
+                </div>
+            </div> -->
+        </div>
+      </div>
+      <tr>
+        <th>Company Name</th>
+        <th>Tax Number</th>
+
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody >
+      <tr *ngFor="let corporate of corporateCustomers | filterCorporate: searchCorporate"  >
+       
+        <td>{{ corporate.companyName}}</td>
+        <td> {{ corporate.taxNumber}}</td>
+       
+        <td>
+          <button type="button" class="btn btn-primary" [routerLink]="['/customerDetails',corporate.customerId]">Detail</button>
+        </td>
+      </tr>
+    </tbody>
+    <button type="button" class="btn btn-primary btn-lg btn-block" [routerLink]="['/createCustomer']">Create New Customer</button>
+    </table>
 
 
 
 
 
-
-
-
-
-
-<!--directive *ngFor="let item of categories(dolasilacak dizi adi)"-->
-<!--*ngIf="categories.length > 3"-->
-<!-- Bir elementte ikiden fazla directive kullanamayiz-->
-<!--Bir element icin birden fazla directive kullanmak istersek ng-template, ng-container kullanabiliriz.-->
-<!-- <ng-container *ngIf="language == 'tr'; else enMessage">
-  <div>Merhaba</div>
-</ng-container>
-<ng-template #enMessage>
-  <div>Hello</div>
-</ng-template>
-
-<ul *ngIf="categories">
-  <ng-template ngFor let-item [ngForOf]="categories">
-    <li *ngIf="item.name.length > 3">{{ item.id }} {{ item.name }}</li>
-  </ng-template>
-</ul>
-
-Reactive Form -->
-<!-- <h1>Form - Add</h1>
-<form [formGroup]="categoryAddForm" (submit)="add()">
-  <p>{{ error }}</p>
-  <input formControlName="name" type="text" placeholder="name" />
-  <input formControlName="description" type="text" placeholder="description" />
-  <button type="submit">Add</button>
-</form>
-
- ngModel Form -->
-<!-- <h1>Form - Delete</h1>
-Silinecek olan id: {{ categoryIdToDelete }}
-<div>
-  <input type="text" placeholder="id" [(ngModel)]="categoryIdToDelete" />
-  <button class="btn" (click)="delete()">Sil</button>
-</div> -->

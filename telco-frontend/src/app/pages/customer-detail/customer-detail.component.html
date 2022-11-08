@@ -1,26 +1,19 @@
 <app-navbar></app-navbar>
+<div class="container" style="padding: 10rem;">
 
-<div class="container">
 
-
-<table class="table table-info table-sm" >
-    
-    <tbody>
-      <tr>
-        <th scope="row">First Name</th>
-        <td>{{firstName }}</td>
-        
-      </tr>
-      <tr>
-        <th scope="row">Last Name</th>
-        <td>{{lastName }}</td>
-
-      </tr>
-      <tr>
-        <th scope="row">National Identity</th>
-        <td colspan="2">{{nationalIdentity }}</td>
-    
-      </tr>
-    </tbody>
-  </table>
+<div class="card" style="width: 22rem; height: 30;">
+  <div class="card-header">
+    Customer Information
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">First Name: {{firstName }}</li>
+    <li class="list-group-item">Last Name: {{lastName }}</li>
+    <li class="list-group-item">Birthday:  {{ dateOfBirth }}</li>
+    <li class="list-group-item">National Identity: {{nationalIdentity }}</li>
+  </ul>
 </div>
+
+</div>
+
+<app-footer></app-footer>

@@ -20,6 +20,9 @@ import { Token } from '@angular/compiler';
 import { NavbarComponent } from './pages/navbar/navbar.component';
 import { FilterServicePipe } from './pipes/filter-service.pipe';
 import { CustomerDetailComponent } from './pages/customer-detail/customer-detail.component';
+import { CreateCustomerComponent } from './pages/create-customer/create-customer.component';
+import { FooterComponent } from './pages/footer/footer.component';
+import { FilterCorporatePipe } from './pipes/filter-corporate.pipe';
 
 //declarations ---> Module ait componentleri cagirir.
 //imports  ---> Modulun kullandigi modulleri tutar.
@@ -40,6 +43,9 @@ import { CustomerDetailComponent } from './pages/customer-detail/customer-detail
     NavbarComponent,
     FilterServicePipe,
     CustomerDetailComponent,
+    CreateCustomerComponent,
+    FooterComponent,
+    FilterCorporatePipe,
   ],
   imports: [
     BrowserModule,

@@ -5,12 +5,14 @@ import { LoginComponent } from './pages/login/login.component';
 import { CostumerListComponent} from './pages/costumer-list/costumer-list.component';
 import { LoginGuard} from './guard/login.guard'
 import { CustomerDetailComponent } from './pages/customer-detail/customer-detail.component';
+import { CreateCustomerComponent } from './pages/create-customer/create-customer.component';
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent ,canActivate: [LoginGuard]},
   { path: 'customerList', component: CostumerListComponent, canActivate: [LoginGuard]},
-  { path: 'customerDetails/:customerId', component: CustomerDetailComponent, canActivate: [LoginGuard]}
+  { path: 'customerDetails/:customerId', component: CustomerDetailComponent, canActivate: [LoginGuard]},
+  { path: 'createCustomer', component: CreateCustomerComponent, canActivate: [LoginGuard]} 
 ];
 
 @NgModule({

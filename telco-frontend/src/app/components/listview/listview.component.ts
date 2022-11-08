@@ -5,11 +5,11 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-// import { Category } from 'src/app/models/category';
-// import { CategoriesService } from 'src/app/services/categories.service';
+import { Router } from '@angular/router';
 import { IndividualCustomers } from 'src/app/models/individualCustomers';
-import { ServicesService } from 'src/app/services/services.service';
-
+import { corporateCustomers } from 'src/app/models/corporateCustomers';
+import { IndividualCustomersService } from 'src/app/services/individual-customers-service.service';
+import { CorporateCustomersServiceService } from 'src/app/services/corporate-customers-service.service'
 @Component({
   selector: 'app-listview',
   templateUrl: './listview.component.html',
@@ -22,30 +22,46 @@ export class ListviewComponent implements OnInit {
   language: string = 'tr';
   error: string = '';
   individualCustomers!:IndividualCustomers[];
+  corporateCustomers!:corporateCustomers[];
   serviceAddForm!: FormGroup;
   searchText: string='';
-
+  searchCorporate: string='';
+  selectedCustomer:boolean = true;
   
   constructor(
    
-    private serviceService: ServicesService,
+    private individualCustomerService:IndividualCustomersService,
+    private corporateCustomerService:CorporateCustomersServiceService,
+    private router: Router,
     private formBuilder: FormBuilder
   ) {}
 
   ngOnInit() {
     this.getIndividualCustomers();
+    this.getCorporateCustomers();
     
     
   }
+  getCorporateCustomers(): void {
+    this.corporateCustomerService.getAllCustomers().subscribe((response) => {
+      this.corporateCustomers = response;
+    })
+    this.selectedCustomer = false;
+  }
   getIndividualCustomers(): void {
-    this.serviceService.getServices().subscribe((response) => {
+    this.individualCustomerService.getAllCustomers().subscribe((response) => {
       this.individualCustomers = response;
     })
+    this.selectedCustomer = true;
   }
 
   onSearchTextChanged(){
     console.log(this.searchText);
   }
+  onSearchTextCorporate(){
+    console.log(this.searchCorporate);
+  }
+  
   add(): void {}
    
   delete() {}

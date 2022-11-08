@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/authService.service';
 import { LocalstorageService } from 'src/app/services/localstorageService.service';
 import { ToastrService } from 'ngx-toastr';
@@ -40,7 +39,7 @@ export class LoginComponent implements OnInit {
         this.localstorageService.setItem('token', response['access_token']);
         this.router.navigateByUrl('customerList');
         this.loginForm.reset();
-        this.toastr.success("Deneme login","deneme");
+        this.toastr.success("Giriş Başarılı");
     
         console.log('tost message')
       },
