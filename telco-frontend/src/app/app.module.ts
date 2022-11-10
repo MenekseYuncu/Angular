@@ -23,6 +23,7 @@ import { CustomerDetailComponent } from './pages/customer-detail/customer-detail
 import { CreateCustomerComponent } from './pages/create-customer/create-customer.component';
 import { FooterComponent } from './pages/footer/footer.component';
 import { FilterCorporatePipe } from './pipes/filter-corporate.pipe';
+import { CreateServicesComponent } from './pages/create-services/create-services.component';
 
 //declarations ---> Module ait componentleri cagirir.
 //imports  ---> Modulun kullandigi modulleri tutar.
@@ -46,6 +47,7 @@ import { FilterCorporatePipe } from './pipes/filter-corporate.pipe';
     CreateCustomerComponent,
     FooterComponent,
     FilterCorporatePipe,
+    CreateServicesComponent,
   ],
   imports: [
     BrowserModule,
