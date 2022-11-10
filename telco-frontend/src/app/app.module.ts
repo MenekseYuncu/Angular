@@ -64,6 +64,7 @@ import { appReducer } from './store/app.reducer';
     }),
     StoreModule.forRoot<AppStoreState>(appReducer),
   ],
+
   exports: [],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
