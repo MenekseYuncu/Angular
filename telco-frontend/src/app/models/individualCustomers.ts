@@ -1,5 +1,5 @@
 export interface IndividualCustomers {
-    customerId: number;
+    customerId?: number;
     firstName: string;
     lastName: string;
     nationalIdentity: number;

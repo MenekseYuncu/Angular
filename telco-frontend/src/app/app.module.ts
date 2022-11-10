@@ -24,7 +24,8 @@ import { CreateCustomerComponent } from './pages/create-customer/create-customer
 import { FooterComponent } from './pages/footer/footer.component';
 import { FilterCorporatePipe } from './pipes/filter-corporate.pipe';
 import { CreateServicesComponent } from './pages/create-services/create-services.component';
-
+import { customerReducer } from './store/customer.reducer';
+import { StoreModule} from '@ngrx/store'
 //declarations ---> Module ait componentleri cagirir.
 //imports  ---> Modulun kullandigi modulleri tutar.
 //exports ---> Bir modulden disariya acmak istedigimiz ozellikleri tutar.(fonk. degiskenler gibi)
@@ -48,6 +49,7 @@ import { CreateServicesComponent } from './pages/create-services/create-services
     FooterComponent,
     FilterCorporatePipe,
     CreateServicesComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -64,8 +66,11 @@ import { CreateServicesComponent } from './pages/create-services/create-services
         tokenGetter: () => {
           return localStorage.getItem('token');
         }}
-    })
+    }),
+    StoreModule.forRoot({"customer": customerReducer})
   ],
+
+ 
   exports: [],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
