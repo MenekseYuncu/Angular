@@ -1,79 +1,95 @@
-
-<div style="display: flex;">
-<div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
-  <div  class="btn-group mr-2" role="group" aria-label="First group">
-    <button type="button" class="btn btn-secondary" [ngClass]="{ active: selectedCustomer }" (click)="getIndividualCustomers()">Individual Customers</button>
-    <button type="button" class="btn btn-secondary" [ngClass]="{ active: !selectedCustomer }" (click)="getCorporateCustomers()">Corporate Customers</button>
+<div style="display: flex">
+  <div
+    class="btn-toolbar mb-3"
+    role="toolbar"
+    aria-label="Toolbar with button groups"
+  >
+    <div class="btn-group mr-2" role="group" aria-label="First group">
+      <button
+        type="button"
+        class="btn btn-secondary"
+        [ngClass]="{ active: selectedCustomer }"
+        (click)="getIndividualCustomers()"
+      >
+        Individual Customers
+      </button>
+      <button
+        type="button"
+        class="btn btn-secondary"
+        [ngClass]="{ active: !selectedCustomer }"
+        (click)="getCorporateCustomers()"
+      >
+        Corporate Customers
+      </button>
+    </div>
   </div>
-  <!-- <div class="input-group">
-    <input [(ngModel)]="searchText" (keydown)="onSearchTextChanged()" type="text" class="form-control" placeholder="Input group example" aria-label="Input group example" aria-describedby="btnGroupAddon" />
-  </div> -->
 </div>
 
-</div>
-
-<table class="table table-borderless btn-table" *ngIf="selectedCustomer">
-  
-  <thead>
-    <div class="m-4">
-      <div class="row">
-          <div class="col-4">
-              <div class="input-group">
-                  
-                  <input [(ngModel)]="searchText" (keydown)="onSearchTextChanged()" type="text" class="form-control" placeholder="First Name">
-              </div>
-          </div>
-          <!-- <div class="col-4">
-              <div class="input-group">
-                  
-                  <input type="text" class="form-control" placeholder="Last Name">
-              </div>
-          </div> -->
+<div class="py-2 flex justify-content-start" *ngIf="selectedCustomer">
+  <div class="row">
+    <div class="col-4">
+      <div class="input-group">
+        <input
+          [(ngModel)]="searchText"
+          (keydown)="onSearchTextChanged()"
+          type="text"
+          class="form-control"
+          placeholder="First Name"
+        />
       </div>
     </div>
-    <tr>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>National Identity</th>
-      <th>Birthday</th>
-      <th>Details</th>
-    </tr>
-  </thead>
-  
-  <tbody >
-    <tr *ngFor="let item of individualCustomers | filterService: searchText" >
-     
-      <td>{{ item.firstName}}</td>
-      <td> {{ item.lastName}}</td>
-      <td> {{ item.nationalIdentity}}</td>
-      <td> {{ item.dateOfBirth }}</td>
-      <td>
-        <button type="button" class="btn btn-primary" [routerLink]="['/customerDetails',item.customerId]">Detail</button>
-      </td>
-    </tr>
-  </tbody>
-  <button type="button" class="btn btn-primary btn-lg btn-block" [routerLink]="['/createCustomer']">Create New Customer</button>
-  </table>
+  </div>
+</div>
 
+<div class="py-2 flex justify-content-start" *ngIf="!selectedCustomer">
+  <div class="row">
+    <div class="col-4">
+      <div class="input-group">
+        <input
+          type="text"
+          [(ngModel)]="searchCorporate"
+          (keydown)="onSearchTextCorporate()"
+          class="form-control"
+          placeholder="Company Name"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="border: 1px solid rgb(218, 218, 218); border-radius: 15px">
+  <table class="table table-borderless btn-table" *ngIf="selectedCustomer">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>National Identity</th>
+        <th>Birthday</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let item of individualCustomers | filterService: searchText">
+        <td>{{ item.firstName }}</td>
+        <td>{{ item.lastName }}</td>
+        <td>{{ item.nationalIdentity }}</td>
+        <td>{{ item.dateOfBirth }}</td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-primary"
+            [routerLink]="['/customerDetails', item.customerId]"
+          >
+            Detail
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
   <!-- ----------------------------------- -->
   <table class="table table-borderless btn-table" *ngIf="!selectedCustomer">
     <thead>
-      <div class="m-4">
-        <div class="row">
-            <div class="col-4">
-                <div class="input-group">
-                    
-                    <input type="text" [(ngModel)]="searchCorporate" (keydown)=" onSearchTextCorporate()" class="form-control" placeholder="Company Name">
-                </div>
-            </div>
-            <!-- <div class="col-4">
-                <div class="input-group">
-                    
-                    <input type="text" class="form-control" placeholder="Tax Number">
-                </div>
-            </div> -->
-        </div>
-      </div>
       <tr>
         <th>Company Name</th>
         <th>Tax Number</th>
@@ -81,21 +97,35 @@
         <th>Details</th>
       </tr>
     </thead>
-    <tbody >
-      <tr *ngFor="let corporate of corporateCustomers | filterCorporate: searchCorporate"  >
-       
-        <td>{{ corporate.companyName}}</td>
-        <td> {{ corporate.taxNumber}}</td>
-       
+    <tbody>
+      <tr
+        *ngFor="
+          let corporate of corporateCustomers | filterCorporate: searchCorporate
+        "
+      >
+        <td>{{ corporate.companyName }}</td>
+        <td>{{ corporate.taxNumber }}</td>
+
         <td>
-          <button type="button" class="btn btn-primary" [routerLink]="['/customerDetails',corporate.customerId]">Detail</button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            [routerLink]="['/customerDetails', corporate.customerId]"
+          >
+            Detail
+          </button>
         </td>
       </tr>
     </tbody>
-    <button type="button" class="btn btn-primary btn-lg btn-block" [routerLink]="['/createCustomer']">Create New Customer</button>
-    </table>
+  </table>
+</div>
 
-
-
-
-
+<div class="py-3 d-flex justify-content-start">
+  <button
+    type="button"
+    class="btn btn-primary btn-lg btn-block"
+    [routerLink]="['/createCustomer']"
+  >
+    Create New Customer
+  </button>
+</div>

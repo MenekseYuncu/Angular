@@ -1,55 +1,37 @@
-<body style="height: 92.5vh;">
-<section class="h-100" style="background-color: #2779e2;">
+<section class="container mt-3">
   <div class="container h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-xl-9">
-        <div class="card px-5 py-5 " style="border-radius: 15px;">
-
-         <form *ngIf=" services">
-
-          <div *ngFor="let item of services" class="d-flex justify-content-center align-items-center">
-          <input type="checkbox" class="btn-check" id={{item.id}}  autocomplete="off" />
-          <label class="btn btn-primary my-1"  for={{item.id}}>{{item.name}}</label>
-        </div>
-
-        <hr class="mx-n3">
-  
-          <div class="px-5 py-2 d-flex justify-content-between">
-            <button (click)="goBack()" class="btn btn-primary btn-lg">Back</button>
-            <button type="submit" class="btn btn-primary btn-lg">Next</button>
-          </div>
-
-            
-    
-        </form>
-          <!-- <form *ngIf=" services">
-            
-            <div class="btn-group">
-          
-              <ng-template ngFor let-item [ngForOf]="services" >
-                <input
-                mdbRadio
-                type="radio"
+        <div class="card px-5 py-5" style="border-radius: 15px">
+          <form *ngIf="services" (submit)="saveServices()">
+            <div
+              *ngFor="let item of services"
+              class="d-flex justify-content-start align-items-center"
+            >
+              <input
+                type="checkbox"
                 class="btn-check"
-                name="options"
-                id="option1"
+                id="{{ item.id }}"
                 autocomplete="off"
-                [checked]="true"
-                
+                [value]="item.name"
+                (change)="onCheckChange($event)"
               />
-                <label class="btn btn-secondary mt-3" for="option1">{{ item.name }}</label>
-              </ng-template>
+              <label class="btn btn-primary my-1" for="{{ item.id }}">{{
+                item.name
+              }}</label>
+            </div>
 
+            <hr class="mx-n3" />
+
+            <div class="px-5 py-2 d-flex justify-content-between">
+              <button (click)="goBack()" class="btn btn-primary btn-lg">
+                Back
+              </button>
+              <button type="submit" class="btn btn-primary btn-lg">Next</button>
             </div>
-            <hr class="mx-n3">
-  
-            <div class="px-5 py-4">
-              <button type="submit" class="btn btn-primary btn-lg ">Next</button>
-            </div>
-           </form> -->
-          </div>
+          </form>
         </div>
-          </div>
-          </div>
-          </section>
-        </body>
+      </div>
+    </div>
+  </div>
+</section>

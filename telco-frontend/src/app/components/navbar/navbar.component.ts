@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-   
+
   isLogin: boolean = false;
   constructor(private authService: AuthService,private router: Router , private toastr:ToastrService) { }
 

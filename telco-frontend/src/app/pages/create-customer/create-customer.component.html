@@ -1,130 +1,166 @@
+<section class="container mt-3">
+  <div class="container h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-xl-9">
+        <h1 class="text-white mb-4">{{ title }}</h1>
 
-<section class="vh-100 " style="background-color: #2779e2;">
-    <div class="container h-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-xl-9">
-  
-          <h1 class="text-white mb-4">{{ title}}</h1>
-            
-          <div class="card" style="border-radius: 15px;">
-            
-            <div class="col-md-10 mb-6 d-flex justify-content-center" >
-              <div class="col-md-5 ps-3">
-                <h6 class="mb-0">Customer Type</h6>
-              </div>
-              <div class="form-check form-check-inline">
-             
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="individualCustomer"
-                (click)="CustomerOption(true)" [checked]="isChecked" />
-                <label class="form-check-label" >Individual Customers {{ isChecked }}
-                </label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="corporateCustomers"
-                  value="corporateCustomers" (click)="CustomerOption(false)" [checked]="!isChecked" />
-                <label class="form-check-label" for="otherGender">Corporate Customers
-                </label>
-              </div>
+        <div class="card" style="border-radius: 15px">
+          <div class="col-md-10 mb-6 d-flex justify-content-center">
+            <div class="col-md-5 ps-3">
+              <h6 class="mb-0">Customer Type</h6>
             </div>
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="inlineRadioOptions"
+                id="individualCustomer"
+                (click)="CustomerOption(true)"
+                [checked]="isChecked"
+              />
+              <label class="form-check-label"
+                >Individual Customers {{ isChecked }}
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="inlineRadioOptions"
+                id="corporateCustomers"
+                value="corporateCustomers"
+                (click)="CustomerOption(false)"
+                [checked]="!isChecked"
+              />
+              <label class="form-check-label" for="otherGender"
+                >Corporate Customers
+              </label>
+            </div>
+          </div>
 
-
-            <!-- ------------------IndividualCustomer------------------- -->
-            <form *ngIf="isChecked " [formGroup]="createIndividualCustomer" (submit)="saveIndividualCustomer()">
-            <hr class="mx-n3">
+          <!-- ------------------IndividualCustomer------------------- -->
+          <form
+            *ngIf="isChecked"
+            [formGroup]="createIndividualCustomer"
+            (submit)="saveIndividualCustomer()"
+          >
+            <hr class="mx-n3" />
             <div class="card-body">
-          
               <div class="row align-items-center pt-4 pb-3">
-                <div class="col-md-3 ps-5" >
+                <div class="col-md-3 ps-5">
                   <h6 class="mb-0">First Name</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <input type="text" id="firstName" formControlName="firstName" class="form-control form-control-lg" />
-                  <div >
-
-                  </div>
+                  <input
+                    type="text"
+                    id="firstName"
+                    formControlName="firstName"
+                    class="form-control form-control-lg"
+                  />
+                  <div></div>
                 </div>
               </div>
-        
-              <hr class="mx-n3">
+
+              <hr class="mx-n3" />
               <div class="row align-items-center pt-4 pb-3">
                 <div class="col-md-3 ps-5" id="lastName">
-                  <h6 class="mb-0" >Last Name</h6>
+                  <h6 class="mb-0">Last Name</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <input type="text"  formControlName="lastName" class="form-control form-control-lg" />
+                  <input
+                    type="text"
+                    formControlName="lastName"
+                    class="form-control form-control-lg"
+                  />
                 </div>
               </div>
 
-              <hr class="mx-n3">
+              <hr class="mx-n3" />
               <div class="row align-items-center pt-4 pb-3">
                 <div class="col-md-3 ps-5" id="nationalIdentity">
                   <h6 class="mb-0">National Identity</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <input type="text" formControlName="nationalIdentity" class="form-control form-control-lg" />
+                  <input
+                    type="text"
+                    formControlName="nationalIdentity"
+                    class="form-control form-control-lg"
+                  />
                 </div>
               </div>
 
-              <hr class="mx-n3">
+              <hr class="mx-n3" />
               <div class="row">
-                <div  class="row align-items-center pt-4 pb-3">
-                    <div class="col-md-3 ps-5" id="dateOfBirth">
-                        <h6 class="mb-0">Birthday Date</h6>
-                      </div>
+                <div class="row align-items-center pt-4 pb-3">
+                  <div class="col-md-3 ps-5" id="dateOfBirth">
+                    <h6 class="mb-0">Birthday Date</h6>
+                  </div>
                   <div class="form-outline col-md-9 pe-5">
-                    <input type="date" id="dateOfBirth" class="form-control form-control-lg"
-                      formControlName="dateOfBirth" />
-                    
+                    <input
+                      type="date"
+                      id="dateOfBirth"
+                      class="form-control form-control-lg"
+                      formControlName="dateOfBirth"
+                    />
                   </div>
                 </div>
               </div>
-          
 
-              <hr class="mx-n3">
-  
+              <hr class="mx-n3" />
+
               <div class="px-5 py-2 d-flex justify-content-end">
-                <button type="submit" class="btn btn-primary btn-lg">Next</button>
+                <button type="submit" class="btn btn-primary btn-lg">
+                  Next
+                </button>
               </div>
-  
-            </div>  
-           </form>
-<!-- ----------------------------------CorporateCustomer  --------------------- -->
-           <form *ngIf="!isChecked " [formGroup]="createCorporateCustomer" (submit)="saveCorporateCustomer()" >
-            <hr class="mx-n3">
+            </div>
+          </form>
+          <!-- ----------------------------------CorporateCustomer  --------------------- -->
+          <form
+            *ngIf="!isChecked"
+            [formGroup]="createCorporateCustomer"
+            (submit)="saveCorporateCustomer()"
+          >
+            <hr class="mx-n3" />
             <div class="card-body">
-             
               <div class="row align-items-center pt-4 pb-3">
                 <div class="col-md-3 ps-5">
                   <h6 class="mb-0">Company Name</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <input type="text" id="companyName" formControlName="companyName" class="form-control form-control-lg" />
+                  <input
+                    type="text"
+                    id="companyName"
+                    formControlName="companyName"
+                    class="form-control form-control-lg"
+                  />
                 </div>
               </div>
-      
 
-              <hr class="mx-n3">
+              <hr class="mx-n3" />
               <div class="row align-items-center pt-4 pb-3">
                 <div class="col-md-3 ps-5">
                   <h6 class="mb-0">Tax Number</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <input type="text" id="taxNumber" formControlName="taxNumber" class="form-control form-control-lg" />
+                  <input
+                    type="text"
+                    id="taxNumber"
+                    formControlName="taxNumber"
+                    class="form-control form-control-lg"
+                  />
                 </div>
               </div>
 
-              <hr class="mx-n3">
-  
               <div class="px-5 py-2 d-flex justify-content-end">
-                <button type="submit" class="btn btn-primary btn-lg ">Next</button>
+                <button type="submit" class="btn btn-primary btn-lg">
+                  Next
+                </button>
               </div>
-  
-            </div>  
-           </form>
-           
-          </div>
-       
+            </div>
+          </form>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
