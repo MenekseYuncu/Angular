@@ -27,6 +27,7 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { StoreModule } from '@ngrx/store';
 import { AppStoreState } from './store/app.state';
 import { appReducer } from './store/app.reducer';
+import { CustomerOverviewComponent } from './pages/customer-overview/customer-overview.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { appReducer } from './store/app.reducer';
     FilterServicePipe,
     CustomerDetailComponent,
     CreateCustomerComponent,
+    CustomerOverviewComponent,
     FooterComponent,
     FilterCorporatePipe,
     CreateServicesComponent,

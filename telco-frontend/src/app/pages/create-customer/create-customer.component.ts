@@ -11,6 +11,7 @@ import {
   setCreateIndividualCustomer,
 } from 'src/app/store/customerToRegister/customer.action';
 import { ToastrService } from 'ngx-toastr';
+import { LocalstorageService } from 'src/app/services/localstorageService.service';
 @Component({
   selector: 'app-create-customer',
   templateUrl: './create-customer.component.html',
@@ -28,7 +29,8 @@ export class CreateCustomerComponent implements OnInit {
     private formBuilder: FormBuilder,
     private toastr: ToastrService,
     private router: Router,
-    private store: Store<AppStoreState>
+    private store: Store<AppStoreState>,
+    private localStorage: LocalstorageService
   ) {
     this.individualCustomer$ = this.store.select(
       (state) => state.customer.individualCustomer
@@ -64,11 +66,15 @@ export class CreateCustomerComponent implements OnInit {
 
   saveIndividualCustomer() {
     if (this.createIndividualCustomer.valid) {
-      this.store.dispatch(
-        setCreateIndividualCustomer(this.createIndividualCustomer.value)
-      );
-      this.store.select((state) =>
-        console.log(state.customer.individualCustomer)
+      // this.store.dispatch(
+      //   setCreateIndividualCustomer(this.createIndividualCustomer.value)
+      // );
+      // this.store.select((state) =>
+      //   console.log(state.customer.individualCustomer)
+      // );
+      this.localStorage.setItem(
+        'individual_customer',
+        JSON.stringify(this.createIndividualCustomer.value)
       );
       this.router.navigateByUrl('/createServices');
     } else {
@@ -77,11 +83,15 @@ export class CreateCustomerComponent implements OnInit {
   }
   saveCorporateCustomer() {
     if (this.createCorporateCustomer.valid) {
-      this.store.dispatch(
-        setCreateCorporateCustomer(this.createCorporateCustomer.value)
-      );
-      this.store.select((state) =>
-        console.log(state.customer.corporateCustomer)
+      // this.store.dispatch(
+      //   setCreateCorporateCustomer(this.createCorporateCustomer.value)
+      // );
+      // this.store.select((state) =>
+      //   console.log(state.customer.corporateCustomer)
+      // );
+      this.localStorage.setItem(
+        'corporate_customer',
+        JSON.stringify(this.createCorporateCustomer.value)
       );
       this.router.navigateByUrl('/createServices');
     } else {

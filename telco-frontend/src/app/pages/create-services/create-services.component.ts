@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Service } from 'src/app/models/service';
+import { LocalstorageService } from 'src/app/services/localstorageService.service';
 import { ServicesService } from 'src/app/services/services.service';
 import { AppStoreState } from 'src/app/store/app.state';
 import { setServiceList } from 'src/app/store/customerToRegister/customer.action';
@@ -21,7 +22,8 @@ export class CreateServicesComponent implements OnInit {
     private formBuilder: FormBuilder,
     private servicesService: ServicesService,
     private router: Router,
-    private store: Store<AppStoreState>
+    private store: Store<AppStoreState>,
+    private localStorage: LocalstorageService
   ) {
     this.serviceList$ = this.store.select(
       (state) => state.customer.serviceList
@@ -63,6 +65,10 @@ export class CreateServicesComponent implements OnInit {
     // this.store.select((state) => {
     //   console.log(state.customer.serviceList);
     // });
+    this.localStorage.setItem(
+      'service_list',
+      JSON.stringify(this.createServices.value)
+    );
     this.router.navigateByUrl('/customerOverview');
   }
 }

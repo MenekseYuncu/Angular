@@ -1,26 +1,38 @@
 <div class="container" style="padding: 10rem">
   <div class="card" style="width: 22rem; height: 30">
     <div class="card-header">Customer Information</div>
-    <ul class="list-group list-group-flush" *ngIf="section == 2">
-      <li class="list-group-item">First Name:</li>
-      <li class="list-group-item">Last Name:</li>
-      <li class="list-group-item">Birthday:</li>
-      <li class="list-group-item">National Identity:</li>
+    <ul class="list-group list-group-flush" *ngIf="individualCustomer">
+      <li class="list-group-item">
+        First Name: {{ individualCustomer.firstName }}
+      </li>
+      <li class="list-group-item">
+        Last Name:{{ individualCustomer.lastName }}
+      </li>
+      <li class="list-group-item">
+        Birthday: {{ individualCustomer.dateOfBirth }}
+      </li>
+      <li class="list-group-item">
+        National Identity: {{ individualCustomer.nationalIdentity }}
+      </li>
       <div *ngIf="serviceList">
         <div class="card-header">Services</div>
-        <div *ngFor="let service of serviceList">
+        <div *ngFor="let service of services">
           <li class="list-group-item">
             {{ service.serviceName }}: {{ service.dateStarted }}
           </li>
         </div>
       </div>
     </ul>
-    <ul class="list-group list-group-flush" *ngIf="section == 1">
-      <li class="list-group-item">Company Name:</li>
-      <li class="list-group-item">Tax Number:</li>
+    <ul class="list-group list-group-flush" *ngIf="section == 2">
+      <li class="list-group-item">
+        Company Name:{{ corporateCustomer[0].companyName }}
+      </li>
+      <li class="list-group-item">
+        Tax Number:{{ corporateCustomer[0].taxNumber }}
+      </li>
       <div *ngIf="serviceList">
         <div class="card-header">Services</div>
-        <div *ngFor="let service of serviceList">
+        <div *ngFor="let service of services">
           <li class="list-group-item">
             {{ service.serviceName }}: {{ service.dateStarted }}
           </li>
@@ -28,4 +40,13 @@
       </div>
     </ul>
   </div>
+</div>
+<div class="d-flex justify-content-center">
+  <button
+    type="button"
+    (click)="saveCustomer()"
+    class="btn btn-primary btn-lg btn-block"
+  >
+    Save
+  </button>
 </div>
