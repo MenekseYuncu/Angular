@@ -31,10 +31,10 @@ export class CreateCustomerComponent implements OnInit {
     private store: Store<AppStoreState>
   ) {
     this.individualCustomer$ = this.store.select(
-      (state) => state.customer.individualCustomers
+      (state) => state.customer.individualCustomer
     );
     this.corporateCustomer$ = this.store.select(
-      (state) => state.customer.corporateCustomers
+      (state) => state.customer.corporateCustomer
     );
   }
 

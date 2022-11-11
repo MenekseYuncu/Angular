@@ -3,13 +3,13 @@ import { IndividualCustomers } from 'src/app/models/individualCustomers';
 import { Service } from 'src/app/models/service';
 
 export interface CustomerStoreState {
-  individualCustomers: IndividualCustomers | null;
-  corporateCustomers: corporateCustomers | null;
-  serviceList: Service | null;
+  individualCustomer: IndividualCustomers | null;
+  corporateCustomer: corporateCustomers | null;
+  serviceList: string[] | null;
 }
 
 export const initialCustomerStoreState: CustomerStoreState = {
-  individualCustomers: null,
-  corporateCustomers: null,
+  individualCustomer: null,
+  corporateCustomer: null,
   serviceList: null,
 };

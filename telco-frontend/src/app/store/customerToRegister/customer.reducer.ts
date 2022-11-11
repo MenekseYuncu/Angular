@@ -12,22 +12,22 @@ import {
 export const customerReducer = createReducer<CustomerStoreState>(
   initialCustomerStoreState,
   on(setCreateIndividualCustomer, (currentState, action) => {
-    console.log(action);
     return {
       ...currentState,
-      individualCustomers: action.createIndividualCustomer,
+      individualCustomer: action.createIndividualCustomer,
     };
   }),
   on(setCreateCorporateCustomer, (currentState, action) => {
     return {
       ...currentState,
-      corporateCustomers: action.createCorporateCustomer,
+      corporateCustomer: action.createCorporateCustomer,
     };
   }),
   on(setServiceList, (currentState, action) => {
+    console.log(action.serviceList);
     return {
       ...currentState,
-      serviceList: action.selectedServices,
+      serviceList: action.serviceList,
     };
   })
 );

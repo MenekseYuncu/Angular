@@ -15,5 +15,5 @@ export const setCreateCorporateCustomer = createAction(
 
 export const setServiceList = createAction(
   '[Customer] Set Services Customer',
-  props<{ selectedServices: Service }>()
+  props<{ serviceList: string[] }>()
 );

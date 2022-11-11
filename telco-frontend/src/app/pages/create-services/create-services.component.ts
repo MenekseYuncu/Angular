@@ -16,7 +16,7 @@ import { setServiceList } from 'src/app/store/customerToRegister/customer.action
 export class CreateServicesComponent implements OnInit {
   services!: Service[];
   createServices!: FormGroup;
-  serviceList$: Observable<Service | null>;
+  serviceList$: Observable<string[] | null>;
   constructor(
     private formBuilder: FormBuilder,
     private servicesService: ServicesService,
@@ -35,7 +35,7 @@ export class CreateServicesComponent implements OnInit {
 
   createServicesForm() {
     this.createServices = this.formBuilder.group({
-      selectedServices: new FormArray([]),
+      serviceList: new FormArray([]),
     });
   }
 
@@ -49,19 +49,19 @@ export class CreateServicesComponent implements OnInit {
   }
 
   onCheckChange(eventValue: any) {
-    const selectedServices: FormArray = this.createServices.get(
-      'selectedServices'
+    const serviceList: FormArray = this.createServices.get(
+      'serviceList'
     ) as FormArray;
 
     if (eventValue.target.checked) {
-      selectedServices.push(new FormControl(eventValue.target.value));
+      serviceList.push(new FormControl(eventValue.target.value));
     }
   }
 
   saveServices() {
     this.store.dispatch(setServiceList(this.createServices.value));
     this.store.select((state) => {
-      console.log(state.customer.serviceList);
+      console.log(state);
     });
     //this.router.navigateByUrl('');
   }
