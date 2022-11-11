@@ -3,7 +3,9 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { corporateCustomers } from 'src/app/models/corporateCustomers';
 import { IndividualCustomers } from 'src/app/models/individualCustomers';
+import { CostumerServiceService } from 'src/app/services/costumer-service.service';
 import { LocalstorageService } from 'src/app/services/localstorageService.service';
+import { SubscriptionsService } from 'src/app/services/subscriptions.service';
 import { AppStoreState } from 'src/app/store/app.state';
 import { setCreateIndividualCustomer } from 'src/app/store/customerToRegister/customer.action';
 
@@ -21,7 +23,9 @@ export class CustomerOverviewComponent implements OnInit {
   constructor(
     private store: Store<AppStoreState>,
     private localStorage: LocalstorageService,
-    private router: Router
+    private router: Router,
+    private customerService: CostumerServiceService,
+    private subscriptionServ: SubscriptionsService
   ) {
     this.services = [{ serviceName: '', dateStarted: '' }];
   }
@@ -69,9 +73,25 @@ export class CustomerOverviewComponent implements OnInit {
   }
 
   saveCustomer() {
-    this.localStorage.remove('individual_customer');
-    this.localStorage.remove('corporate_customer');
-    this.localStorage.remove('service_list');
+    if (this.localStorage.get('individual_customer') !== undefined) {
+      console.log('test');
+      this.customerService
+        .createIndividualCustomer(this.individualCustomer)
+        .subscribe((response) => {
+          console.log(response);
+        });
+      this.localStorage.remove('individual_customer');
+    } else if (this.localStorage.get('corporate_customer') !== undefined) {
+      this.customerService
+        .createCorporateCustomer(this.corporateCustomer)
+        .subscribe((res) => {
+          console.log(res);
+        });
+      this.localStorage.remove('corporate_customer');
+    } else if (this.localStorage.get('service_list') !== undefined) {
+      //this.subscriptionServ.postSubscription()
+      this.localStorage.remove('service_list');
+    }
     this.router.navigateByUrl('/customerList');
   }
 }

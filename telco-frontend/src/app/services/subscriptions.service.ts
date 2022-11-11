@@ -16,4 +16,11 @@ export class SubscriptionsService {
       `${this.controllerUrl}?customerId=${id}`
     );
   }
+
+  postSubscription(subscription: subscriptions) {
+    return this.httpClient.post<subscriptions>(
+      this.controllerUrl,
+      subscription
+    );
+  }
 }
