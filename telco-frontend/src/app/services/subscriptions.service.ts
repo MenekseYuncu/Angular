@@ -1,17 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { subscriptions } from 'src/app/models/subscriptions';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SubscriptionsService {
   private controllerUrl = `${environment.apiUrl}/subscriptions`;
-  
-  constructor(private httpClient: HttpClient) { }
 
-  getSubscription(id:number|null){
-    return this.httpClient.get<Subscription[]>(`${this.controllerUrl}?customerId=${id}`);
+  constructor(private httpClient: HttpClient) {}
+
+  getSubscription(id: number | null) {
+    return this.httpClient.get<subscriptions[]>(
+      `${this.controllerUrl}?customerId=${id}`
+    );
   }
 }
