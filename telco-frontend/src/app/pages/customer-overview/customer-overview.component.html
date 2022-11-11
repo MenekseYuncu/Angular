@@ -1,0 +1,31 @@
+<div class="container" style="padding: 10rem">
+  <div class="card" style="width: 22rem; height: 30">
+    <div class="card-header">Customer Information</div>
+    <ul class="list-group list-group-flush" *ngIf="section == 2">
+      <li class="list-group-item">First Name:</li>
+      <li class="list-group-item">Last Name:</li>
+      <li class="list-group-item">Birthday:</li>
+      <li class="list-group-item">National Identity:</li>
+      <div *ngIf="serviceList">
+        <div class="card-header">Services</div>
+        <div *ngFor="let service of serviceList">
+          <li class="list-group-item">
+            {{ service.serviceName }}: {{ service.dateStarted }}
+          </li>
+        </div>
+      </div>
+    </ul>
+    <ul class="list-group list-group-flush" *ngIf="section == 1">
+      <li class="list-group-item">Company Name:</li>
+      <li class="list-group-item">Tax Number:</li>
+      <div *ngIf="serviceList">
+        <div class="card-header">Services</div>
+        <div *ngFor="let service of serviceList">
+          <li class="list-group-item">
+            {{ service.serviceName }}: {{ service.dateStarted }}
+          </li>
+        </div>
+      </div>
+    </ul>
+  </div>
+</div>

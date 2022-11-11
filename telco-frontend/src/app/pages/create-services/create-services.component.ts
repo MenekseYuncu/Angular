@@ -59,10 +59,10 @@ export class CreateServicesComponent implements OnInit {
   }
 
   saveServices() {
-    this.store.dispatch(setServiceList(this.createServices.value));
-    this.store.select((state) => {
-      console.log(state);
-    });
-    //this.router.navigateByUrl('');
+    // this.store.dispatch(setServiceList(this.createServices.value));
+    // this.store.select((state) => {
+    //   console.log(state.customer.serviceList);
+    // });
+    this.router.navigateByUrl('/customerOverview');
   }
 }

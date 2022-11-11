@@ -63,23 +63,29 @@ export class CreateCustomerComponent implements OnInit {
   }
 
   saveIndividualCustomer() {
-    // if (this.createIndividualCustomer.valid) {
-    this.store.dispatch(
-      setCreateIndividualCustomer(this.createIndividualCustomer.value)
-    );
-    this.router.navigateByUrl('/createServices');
-    // } else {
-    //   this.toastr.error('Butun alanlari doldurunuz.');
-    // }
+    if (this.createIndividualCustomer.valid) {
+      this.store.dispatch(
+        setCreateIndividualCustomer(this.createIndividualCustomer.value)
+      );
+      this.store.select((state) =>
+        console.log(state.customer.individualCustomer)
+      );
+      this.router.navigateByUrl('/createServices');
+    } else {
+      this.toastr.error('Butun alanlari doldurunuz.');
+    }
   }
   saveCorporateCustomer() {
-    // if (this.createCorporateCustomer.valid) {
-    this.store.dispatch(
-      setCreateCorporateCustomer(this.createCorporateCustomer.value)
-    );
-    this.router.navigateByUrl('/createServices');
-    // } else {
-    //   this.toastr.error('Butun alanlari doldurunuz.');
-    // }
+    if (this.createCorporateCustomer.valid) {
+      this.store.dispatch(
+        setCreateCorporateCustomer(this.createCorporateCustomer.value)
+      );
+      this.store.select((state) =>
+        console.log(state.customer.corporateCustomer)
+      );
+      this.router.navigateByUrl('/createServices');
+    } else {
+      this.toastr.error('Butun alanlari doldurunuz.');
+    }
   }
 }
